@@ -106,6 +106,15 @@ const sharedConfig = {
                   {
                     removeViewBox: false,
                     removeDimensions: true,
+                    cleanupIDs: {
+                      prefix: {
+                        toString() {
+                          this.counter = this.counter || 0;
+                          this.counter++;
+                          return `svg-icon-${this.counter}`;
+                        }
+                      }
+                    },
                     convertColors: {
                       currentColor: /^(?!url|none)/i,
                     },
@@ -132,6 +141,15 @@ const sharedConfig = {
                   {
                     removeViewBox: false,
                     removeDimensions: true,
+                    cleanupIDs: {
+                      prefix: {
+                        toString() {
+                          this.counter = this.counter || 0;
+                          this.counter++;
+                          return `svg-icon-${this.counter}`;
+                        }
+                      }
+                    },
                     convertColors: {
                       // See https://github.com/google/web-stories-wp/pull/6361
                       currentColor: false,
