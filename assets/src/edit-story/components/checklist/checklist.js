@@ -39,6 +39,7 @@ import {
 import {
   AccessibilityChecks,
   DesignChecks,
+  DistributionChecks,
   EmptyContentCheck,
   PriorityChecks,
 } from './checklistContent';
@@ -71,6 +72,7 @@ export function Checklist() {
 
   const priorityCount = useCategoryCount(ISSUE_TYPES.PRIORITY);
   const designCount = useCategoryCount(ISSUE_TYPES.DESIGN);
+  const distributionCount = useCategoryCount(ISSUE_TYPES.DISTRIBUTION);
   const accessibilityCount = useCategoryCount(ISSUE_TYPES.ACCESSIBILITY);
 
   const { checkpoint } = useCheckpoint(({ state: { checkpoint } }) => ({
@@ -109,6 +111,11 @@ export function Checklist() {
     : 0;
   const designBadgeCount = visiblePanels.includes(ISSUE_TYPES.DESIGN)
     ? designCount
+    : 0;
+  const distributionBadgeCount = visiblePanels.includes(
+    ISSUE_TYPES.DISTRIBUTION
+  )
+    ? distributionCount
     : 0;
   const accessibilityBadgeCount = visiblePanels.includes(
     ISSUE_TYPES.ACCESSIBILITY
@@ -158,6 +165,13 @@ export function Checklist() {
                 onClick={handleOpenPanel(ISSUE_TYPES.DESIGN)}
                 maxHeight={maxPanelHeight}
                 title={CATEGORY_LABELS[ISSUE_TYPES.DESIGN]}
+              />
+              <DistributionChecks
+                badgeCount={distributionBadgeCount}
+                isOpen={isOpen && openPanel === ISSUE_TYPES.DISTRIBUTION}
+                onClick={handleOpenPanel(ISSUE_TYPES.DISTRIBUTION)}
+                maxHeight={maxPanelHeight}
+                title={CATEGORY_LABELS[ISSUE_TYPES.DISTRIBUTION]}
               />
               <AccessibilityChecks
                 badgeCount={accessibilityBadgeCount}
