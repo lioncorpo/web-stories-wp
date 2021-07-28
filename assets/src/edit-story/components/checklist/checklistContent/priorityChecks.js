@@ -38,6 +38,8 @@ import { PanelText, StyledTablistPanel } from '../styles';
 import { useCheckpoint } from '../checkpointContext';
 import VideoOptimization from '../checks/videoOptimization';
 import StoryMissingPublisherName from '../checks/storyMissingPublisherName';
+import StoryAmpValidationErrors from '../checks/storyAmpValidationErrors';
+
 export function PriorityChecks({
   badgeCount = 0,
   maxHeight,
@@ -83,6 +85,7 @@ export function PriorityChecks({
         <PublisherLogoSize />
         <VideoElementMissingPoster />
         {isTranscodingEnabled && <VideoOptimization />}
+        <StoryAmpValidationErrors />
       </StyledTablistPanel>
     </ChecklistCategoryProvider>
   );
