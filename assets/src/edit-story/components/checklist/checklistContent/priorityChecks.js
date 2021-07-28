@@ -19,6 +19,8 @@
 import { __ } from '@web-stories-wp/i18n';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
+import { useFeature } from 'flagged';
+
 /**
  * Internal dependencies
  */
@@ -62,7 +64,7 @@ export function PriorityChecks({
   }, [updateHighPriorityCount, count]);
 
   const { isTranscodingEnabled } = useFFmpeg();
-
+  const isAmpValidationErrorEnabled = useFeature('enableAmpValidationCheck');
   return (
     <ChecklistCategoryProvider category={ISSUE_TYPES.PRIORITY}>
       <StyledTablistPanel
@@ -85,7 +87,7 @@ export function PriorityChecks({
         <PublisherLogoSize />
         <VideoElementMissingPoster />
         {isTranscodingEnabled && <VideoOptimization />}
-        <StoryAmpValidationErrors />
+        {isAmpValidationErrorEnabled && <StoryAmpValidationErrors />}
       </StyledTablistPanel>
     </ChecklistCategoryProvider>
   );
