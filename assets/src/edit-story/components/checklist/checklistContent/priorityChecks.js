@@ -67,7 +67,7 @@ export function PriorityChecks({
     <ChecklistCategoryProvider category={ISSUE_TYPES.PRIORITY}>
       <StyledTablistPanel
         badgeCount={badgeCount}
-        isExpanded={isOpen}
+        isExpanded={badgeCount && isOpen}
         onClick={onClick}
         maxHeight={maxHeight}
         status={PANEL_STATES.DANGER}

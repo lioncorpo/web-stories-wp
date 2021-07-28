@@ -28,13 +28,9 @@ import { PageBackgroundTextLowContrast } from '../checks/pageBackgroundLowTextCo
 import TextElementFontSizeTooSmall from '../checks/textElementFontSizeTooSmall';
 import VideoElementMissingCaptions from '../checks/videoElementMissingCaptions';
 import VideoElementMissingDescription from '../checks/videoElementMissingDescription';
-import {
-  ChecklistCategoryProvider,
-  useCategoryCount,
-} from '../countContext/checkCountContext';
+import { ChecklistCategoryProvider } from '../countContext/checkCountContext';
 import { PanelText, StyledTablistPanel } from '../styles';
 import VideoOptimizationToggle from '../videoOptimizationCheckbox';
-import StoryAmpValidationErrors from '../checks/storyAmpValidationErrors';
 
 export function AccessibilityChecks({
   badgeCount = 0,
@@ -43,12 +39,11 @@ export function AccessibilityChecks({
   onClick,
   title,
 }) {
-  const priorityCount = useCategoryCount(ISSUE_TYPES.PRIORITY);
   return (
     <ChecklistCategoryProvider category={ISSUE_TYPES.ACCESSIBILITY}>
       <StyledTablistPanel
         badgeCount={badgeCount}
-        isExpanded={isOpen}
+        isExpanded={badgeCount && isOpen}
         onClick={onClick}
         maxHeight={maxHeight}
         title={title}
@@ -63,7 +58,6 @@ export function AccessibilityChecks({
         <VideoElementMissingCaptions />
         <ElementLinkTappableRegionTooSmall />
         <ImageElementMissingAlt />
-        {priorityCount === 0 && <StoryAmpValidationErrors />}
       </StyledTablistPanel>
     </ChecklistCategoryProvider>
   );

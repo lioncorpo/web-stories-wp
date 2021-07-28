@@ -42,7 +42,7 @@ export function DesignChecks({
     <ChecklistCategoryProvider category={ISSUE_TYPES.DESIGN}>
       <StyledTablistPanel
         badgeCount={badgeCount}
-        isExpanded={isOpen}
+        isExpanded={badgeCount && isOpen}
         onClick={onClick}
         maxHeight={maxHeight}
         title={title}
